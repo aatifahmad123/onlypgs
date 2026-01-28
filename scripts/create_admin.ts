@@ -41,9 +41,9 @@ async function main() {
     await dbConnect();
     console.log('Connected to Database');
 
-    const email = 'ahmadaatif6@gmail.com';
-    const password = 'aatif@opg123';
-    const name = 'Ahmad Aatif';
+    const email = '**********@gmail.com';
+    const password = '**********';
+    const name = 'Aatif Ahmad';
 
     try {
         const existingAdmin = await Admin.findOne({ email });
