@@ -230,9 +230,9 @@ export default function Home() {
            }
            
            .hero-emojis {
-              font-size: 1.5rem;
+              font-size: 1.25rem;
               margin-bottom: 0.5rem;
-              letter-spacing: 0.5rem;
+              letter-spacing: 0.25rem;
            }
            
            @media (max-width: 768px) {
@@ -240,8 +240,8 @@ export default function Home() {
                  font-size: 2.25rem;
               }
               .hero-emojis {
-                 font-size: 1.2rem;
-                 letter-spacing: 0.2rem;
+                 font-size: 1rem;
+                 letter-spacing: 0.1rem;
               }
            }
         `}</style>

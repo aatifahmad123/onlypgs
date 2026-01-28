@@ -9,6 +9,9 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'OnlyPGs - Real PG Listings',
   description: 'Find your next PG directly from owners. No spam, no ads.',
+  icons: {
+    icon: '/pg-icon.png',
+  },
 };
 
 export default function RootLayout({
