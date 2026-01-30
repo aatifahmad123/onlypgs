@@ -140,12 +140,16 @@ export default async function SearchPage({
                                     </div>
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '0.5rem' }}>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--secondary-text)', fontSize: '0.95rem' }}>
-                                            <span style={{ width: '20px', textAlign: 'center' }}>📍</span>
+                                            <span style={{ width: '20px', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                <img src="/location.png" alt="Location" style={{ width: '16px', height: '16px', objectFit: 'contain' }} />
+                                            </span>
                                             <span>{pg.area}, {pg.city}</span>
                                         </div>
                                         {pg.landmark && (
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--secondary-text)', fontSize: '0.95rem' }}>
-                                                <span style={{ width: '20px', textAlign: 'center' }}>🚩</span>
+                                                <span style={{ width: '20px', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                    <img src="/landmark.png" alt="Landmark" style={{ width: '16px', height: '16px', objectFit: 'contain' }} />
+                                                </span>
                                                 <span>{pg.landmark}</span>
                                             </div>
                                         )}

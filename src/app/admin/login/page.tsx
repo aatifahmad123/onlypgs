@@ -42,7 +42,7 @@ export default function AdminLoginPage() {
                     <label className="label">Password</label>
                     <input className="input" type="password" value={password} onChange={e => setPassword(e.target.value)} required />
                 </div>
-                <button className="btn w-full" disabled={loading}>{loading ? 'Logging in...' : 'Login'}</button>
+                <button className="btn w-full" style={{ width: '100%' }} disabled={loading}>{loading ? 'Logging in...' : 'Login'}</button>
             </form>
         </div>
     );

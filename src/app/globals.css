@@ -343,3 +343,8 @@ select.input {
     display: block;
   }
 }
+
+/* Utility Classes */
+.w-full {
+  width: 100%;
+}
