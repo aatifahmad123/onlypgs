@@ -29,8 +29,7 @@ export default function Filters({ initialFilters }: FiltersProps) {
 
                     <label className="label">
                         Gender
-                        <select name="gender" className="input" defaultValue={initialFilters.gender as string}>
-                            <option value="">All</option>
+                        <select name="gender" className="input" defaultValue={initialFilters.gender as string || 'boys'}>
                             <option value="boys">Boys</option>
                             <option value="girls">Girls</option>
                             <option value="unisex">Unisex</option>

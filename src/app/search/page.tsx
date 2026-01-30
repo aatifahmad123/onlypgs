@@ -10,13 +10,13 @@ import Room from '@/models/Room';
 async function getPGs(searchParams: any) {
     await dbConnect();
 
-    const { city, pgName, gender, roomType, minPrice, maxPrice, food, wifi, washingMachine, search } = searchParams;
+    const { city, pgName, gender = 'boys', roomType, minPrice, maxPrice, food, wifi, washingMachine, search } = searchParams;
 
     const query: any = { status: 'approved' };
 
     if (city) query.city = { $regex: new RegExp(city as string, 'i') };
     if (pgName) query.$text = { $search: pgName as string };
-    if (gender && gender !== 'all') query.genderType = gender;
+    query.genderType = gender;
 
     // Global Search (Name, Location, Landmark)
     if (search) {
