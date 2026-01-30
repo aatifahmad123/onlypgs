@@ -69,6 +69,7 @@ export default function Home() {
             value={city}
             onChange={setCity}
             placeholder="Select City"
+            animatedPlaceholders={['Bangalore', 'Hyderabad', 'Gurgaon', 'Pune', 'Mumbai']}
           />
           <input
             type="text"

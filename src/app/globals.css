@@ -96,8 +96,8 @@ a {
 }
 
 .input:focus {
-  outline: 2px solid var(--accent);
-  border-color: transparent;
+  outline: none;
+  border-color: var(--accent);
 }
 
 /* Ensure select dropdowns match theme if supported, though native selects are hard to style perfect without custom UI */
@@ -362,4 +362,24 @@ select.input {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
+}
+
+/* Form Controls */
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+/* Global Selection Color */
+::selection {
+  background-color: var(--accent);
+  color: white;
+}
+
+/* Caret Color */
+input,
+textarea,
+select {
+  caret-color: var(--accent);
 }

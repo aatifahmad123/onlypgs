@@ -11,14 +11,60 @@ interface SelectProps {
     value: string;
     onChange: (value: string) => void;
     placeholder?: string;
+    animatedPlaceholders?: string[];
     className?: string;
 }
 
-export default function Select({ options, value, onChange, placeholder = 'Select', className = '' }: SelectProps) {
+export default function Select({ options, value, onChange, placeholder = 'Select', animatedPlaceholders, className = '' }: SelectProps) {
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
 
-    const selectedLabel = options.find(o => o.value === value)?.label || placeholder;
+    // Animation Logic
+    const [placeholderText, setPlaceholderText] = useState(placeholder);
+    useEffect(() => {
+        if (!animatedPlaceholders || animatedPlaceholders.length === 0 || value) {
+            setPlaceholderText(placeholder);
+            return;
+        }
+
+        let currentIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let timeoutId: NodeJS.Timeout;
+
+        const type = () => {
+            const currentString = animatedPlaceholders[currentIndex];
+
+            if (isDeleting) {
+                setPlaceholderText(currentString.substring(0, charIndex - 1));
+                charIndex--;
+            } else {
+                setPlaceholderText(currentString.substring(0, charIndex + 1));
+                charIndex++;
+            }
+
+            let typeSpeed = 100;
+
+            if (isDeleting) typeSpeed /= 2;
+
+            if (!isDeleting && charIndex === currentString.length) {
+                isDeleting = true;
+                typeSpeed = 2000; // Pause at end
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                currentIndex = (currentIndex + 1) % animatedPlaceholders.length;
+                typeSpeed = 500; // Pause before typing next
+            }
+
+            timeoutId = setTimeout(type, typeSpeed);
+        };
+
+        timeoutId = setTimeout(type, 100);
+
+        return () => clearTimeout(timeoutId);
+    }, [animatedPlaceholders, value, placeholder]);
+
+    const selectedLabel = options.find(o => o.value === value)?.label || (value ? placeholder : placeholderText);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -44,8 +90,8 @@ export default function Select({ options, value, onChange, placeholder = 'Select
                     background: 'var(--background)'
                 }}
             >
-                <span style={{ color: value ? 'var(--primary-text)' : 'var(--secondary-text)' }}>
-                    {selectedLabel}
+                <span style={{ color: value ? 'var(--primary-text)' : 'var(--secondary-text)', minHeight: '1.5em', display: 'inline-block' }}>
+                    {selectedLabel || '\u00A0'}
                 </span>
                 <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }}>
                     <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

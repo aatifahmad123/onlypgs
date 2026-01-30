@@ -169,15 +169,15 @@ export default function AddPGPage() {
                     <div>
                         <h2>Basic Details</h2>
                         <div className="flex flex-col gap-4 mt-4">
-                            <label className="label">PG Name <input className="input" value={formData.pgName} onChange={e => updateForm('pgName', e.target.value)} /></label>
+                            <label className="label">PG Name <input className="input" value={formData.pgName} onChange={e => updateForm('pgName', e.target.value)} placeholder="e.g. Sri Lakshmi PG" /></label>
                             <label className="label">City
                                 <select className="input" value={formData.city} onChange={e => updateForm('city', e.target.value)}>
                                     <option value="">Select City</option>
                                     {['Bangalore', 'Delhi', 'Noida', 'Gurgaon', 'Pune', 'Hyderabad', 'Chennai', 'Mumbai', 'Indore', 'Jaipur'].map(c => <option key={c} value={c}>{c}</option>)}
                                 </select>
                             </label>
-                            <label className="label">Area / Locality <input className="input" value={formData.area} onChange={e => updateForm('area', e.target.value)} /></label>
-                            <label className="label">Landmark <input className="input" value={formData.landmark} onChange={e => updateForm('landmark', e.target.value)} /></label>
+                            <label className="label">Area / Locality <input className="input" value={formData.area} onChange={e => updateForm('area', e.target.value)} placeholder="e.g. Koramangala or HSR Layout" /></label>
+                            <label className="label">Landmark <input className="input" value={formData.landmark} onChange={e => updateForm('landmark', e.target.value)} placeholder="e.g. Near Sony Signal" /></label>
                             <label className="label">
                                 Security Deposit (₹)
                                 <input type="number" className="input" required value={formData.securityDeposit} onChange={e => updateForm('securityDeposit', e.target.value)} placeholder="0" />
