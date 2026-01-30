@@ -17,13 +17,15 @@ export default function Filters({ initialFilters }: FiltersProps) {
                 onClick={() => setIsOpen(!isOpen)}
                 style={{ cursor: 'pointer' }} // Inline for explicit behavior confirmation
             >
-                <h3 style={{ marginTop: 0, marginBottom: '1rem' }}>Filters</h3>
-                <span className="md:hidden filter-toggle-icon" style={{ fontSize: '1.2rem', marginBottom: '1rem' }}>
-                    {isOpen ? '▲' : '▼'}
+                <h3 style={{ margin: 0 }}>Filters</h3>
+                <span className="md:hidden filter-toggle-icon" style={{ display: 'flex', alignItems: 'center' }}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }}>
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
                 </span>
             </div>
 
-            <div className={`filter-content ${isOpen ? 'block' : 'hidden'} md:block`}>
+            <div className={`filter-content ${isOpen ? 'block' : 'hidden'} md:block mt-4 md:mt-0`}>
                 <form className="flex flex-col gap-2" key={JSON.stringify(initialFilters)}>
                     <input type="hidden" name="city" value={initialFilters.city as string || ''} />
 
