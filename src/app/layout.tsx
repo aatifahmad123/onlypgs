@@ -1,10 +1,13 @@
-import { Inter } from 'next/font/google';
+import { Space_Grotesk } from 'next/font/google';
 import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-const inter = Inter({ subsets: ['latin'] });
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+});
 
 export const metadata: Metadata = {
   title: 'OnlyPGs - Real PG Listings',
@@ -21,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <body className={spaceGrotesk.variable} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', fontFamily: 'var(--font-space-grotesk)' }}>
         <Header />
         <div style={{ flex: 1 }}>
           {children}

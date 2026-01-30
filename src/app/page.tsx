@@ -55,9 +55,7 @@ export default function Home() {
   return (
     <div className="container" style={{ paddingTop: '2rem', paddingBottom: '4rem' }}>
       <main className="flex flex-col items-center justify-center catch-copy" style={{ minHeight: '60vh', textAlign: 'center' }}>
-        <div className="hero-emojis">
-          🌸 📍 🇮🇳 ❤️ 🏠
-        </div>
+
         <h2 className="hero-title">
           Find your next PG without<br />the noise.
         </h2>
@@ -229,19 +227,9 @@ export default function Home() {
               letter-spacing: -0.02em;
            }
            
-           .hero-emojis {
-              font-size: 1.25rem;
-              margin-bottom: 0.5rem;
-              letter-spacing: 0.25rem;
-           }
-           
            @media (max-width: 768px) {
               .hero-title {
                  font-size: 2.25rem;
-              }
-              .hero-emojis {
-                 font-size: 1rem;
-                 letter-spacing: 0.1rem;
               }
            }
         `}</style>
