@@ -54,7 +54,7 @@ export default function Home() {
 
   return (
     <div className="container" style={{ paddingTop: '2rem', paddingBottom: '4rem' }}>
-      <main className="flex flex-col items-center justify-center catch-copy" style={{ minHeight: '60vh', textAlign: 'center' }}>
+      <main className="flex flex-col items-center justify-center catch-copy" style={{ minHeight: '60vh', textAlign: 'center', backgroundImage: 'radial-gradient(rgba(119, 141, 169, 0.25) 1.5px, transparent 1.5px)', backgroundSize: '24px 24px' }}>
 
         <h2 className="hero-title">
           Find your next PG without<br />the noise.
