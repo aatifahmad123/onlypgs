@@ -63,7 +63,7 @@ export default function Home() {
           Direct contact with owners. Complete Details. Real listings only.
         </p>
 
-        <form onSubmit={handleSearch} className="search-form" style={{ width: '100%', maxWidth: '700px', display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '4rem' }}>
+        <form onSubmit={handleSearch} className="search-form landing-search-form" style={{ width: '100%', maxWidth: '700px', display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '4rem' }}>
           <Select
             options={CITY_OPTIONS}
             value={city}

@@ -6,7 +6,7 @@ export default function Footer() {
             <div className="container flex flex-col items-center">
                 <p style={{ color: 'var(--secondary-text)', marginBottom: '0.5rem' }}>&copy; {new Date().getFullYear()} OnlyPGs. Real Listings Only.</p>
                 <p style={{ color: 'var(--secondary-text)', fontSize: '0.9rem', marginBottom: '1rem' }}>Made with passion in Mumbai</p>
-                <div className="flex gap-4">
+                <div className="flex gap-4 footer-links">
                     <Link href="/about" style={{ fontSize: '0.8rem', color: 'var(--secondary-text)' }}>About Us</Link>
                     <Link href="/privacy-policy" style={{ fontSize: '0.8rem', color: 'var(--secondary-text)' }}>Privacy Policy</Link>
                     <Link href="/terms-and-conditions" style={{ fontSize: '0.8rem', color: 'var(--secondary-text)' }}>Terms &amp; Conditions</Link>
