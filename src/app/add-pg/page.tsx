@@ -149,7 +149,7 @@ export default function AddPGPage() {
                 ))}
             </div>
 
-            <div className="card">
+            <div className="card listing-form">
                 {step === 1 && (
                     <div>
                         <h2>Who are you?</h2>
@@ -179,7 +179,7 @@ export default function AddPGPage() {
                             <label className="label">Area / Locality <input className="input" value={formData.area} onChange={e => updateForm('area', e.target.value)} placeholder="e.g. Koramangala or HSR Layout" /></label>
                             <label className="label">Landmark <input className="input" value={formData.landmark} onChange={e => updateForm('landmark', e.target.value)} placeholder="e.g. Near Sony Signal" /></label>
                             <label className="label">
-                                Security Deposit (₹)
+                                Security Deposit (Rs.)
                                 <input type="number" className="input" required value={formData.securityDeposit} onChange={e => updateForm('securityDeposit', e.target.value)} placeholder="0" />
                             </label>
                             <label className="label">Gender Allowed
@@ -341,19 +341,19 @@ export default function AddPGPage() {
 
                                             return (
                                                 <>
-                                                    <select className="input" style={{ width: '80px', padding: '0.5rem' }} value={h} onChange={e => updateTime(e.target.value, m, p)}>
+                                                    <select className="input listing-time-select" style={{ width: '80px', padding: '0.5rem' }} value={h} onChange={e => updateTime(e.target.value, m, p)}>
                                                         {Array.from({ length: 12 }, (_, i) => i + 1).map(num => {
                                                             const val = num < 10 ? `0${num}` : `${num}`;
                                                             return <option key={val} value={val}>{val}</option>;
                                                         })}
                                                     </select>
                                                     <span>:</span>
-                                                    <select className="input" style={{ width: '80px', padding: '0.5rem' }} value={m} onChange={e => updateTime(h, e.target.value, p)}>
+                                                    <select className="input listing-time-select" style={{ width: '80px', padding: '0.5rem' }} value={m} onChange={e => updateTime(h, e.target.value, p)}>
                                                         {['00', '15', '30', '45'].map(val => (
                                                             <option key={val} value={val}>{val}</option>
                                                         ))}
                                                     </select>
-                                                    <select className="input" style={{ width: '80px', padding: '0.5rem' }} value={p} onChange={e => updateTime(h, m, e.target.value)}>
+                                                    <select className="input listing-time-select" style={{ width: '80px', padding: '0.5rem' }} value={p} onChange={e => updateTime(h, m, e.target.value)}>
                                                         <option value="AM">AM</option>
                                                         <option value="PM">PM</option>
                                                     </select>
@@ -510,7 +510,7 @@ export default function AddPGPage() {
                                 </div>
                                 <div>
                                     <div style={{ fontSize: '13px', color: '#6b7280', marginBottom: '4px', fontWeight: '500' }}>Security Deposit</div>
-                                    <div style={{ fontSize: '16px', color: '#111827', fontWeight: '600' }}>₹{formData.securityDeposit || '0'}</div>
+                                    <div style={{ fontSize: '16px', color: '#111827', fontWeight: '600' }}>Rs. {formData.securityDeposit || '0'}</div>
                                 </div>
                             </div>
                         </div>
@@ -528,7 +528,7 @@ export default function AddPGPage() {
                                             </div>
                                             <div>
                                                 <div style={{ fontSize: '12px', color: '#6b7280', marginBottom: '4px', fontWeight: '500' }}>Monthly Rent</div>
-                                                <div style={{ fontWeight: '600', color: 'var(--accent)', fontSize: '20px' }}>₹{r.price}</div>
+                                                <div style={{ fontWeight: '600', color: 'var(--accent)', fontSize: '20px' }}>Rs. {r.price}</div>
                                             </div>
                                         </div>
                                     ))}

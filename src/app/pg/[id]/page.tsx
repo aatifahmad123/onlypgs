@@ -19,18 +19,34 @@ async function getPG(id: string) {
     }
 }
 
-export default async function PGDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function PGDetailsPage({
+    params,
+    searchParams,
+}: {
+    params: Promise<{ id: string }>;
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
     const { id } = await params;
+    const resolvedSearchParams = await searchParams;
     const pg = await getPG(id);
 
     if (!pg) {
         notFound();
     }
 
+    const searchQuery = new URLSearchParams();
+    Object.entries(resolvedSearchParams).forEach(([key, value]) => {
+        if (Array.isArray(value)) {
+            value.forEach((item) => searchQuery.append(key, item));
+        } else if (value !== undefined) {
+            searchQuery.set(key, value);
+        }
+    });
+
     return (
         <div className="container" style={{ paddingBottom: '4rem', paddingTop: '2rem' }}>
             <div style={{ marginBottom: '3rem' }}>
-                <Link href="/search" className="btn-secondary inline-block" style={{ border: 'none', paddingLeft: 0, color: 'var(--primary-text)', fontWeight: 600 }}>← Back to Search</Link>
+                <Link href={`/search${searchQuery.size > 0 ? `?${searchQuery.toString()}` : ''}`} className="btn-secondary inline-block" style={{ border: 'none', paddingLeft: 0, color: 'var(--primary-text)', fontWeight: 600 }}><span aria-hidden="true">‹</span> Back to Search</Link>
             </div>
 
             {/* Photos */}
@@ -53,7 +69,7 @@ export default async function PGDetailsPage({ params }: { params: Promise<{ id: 
                         <p style={{ margin: 0, fontSize: '1.1rem', color: 'var(--secondary-text)' }}><strong>City:</strong> {pg.city}</p>
                         <p style={{ margin: 0, fontSize: '1.1rem', color: 'var(--secondary-text)' }}><strong>Location:</strong> {pg.area}</p>
                         <p style={{ margin: 0, fontSize: '1.1rem', color: 'var(--secondary-text)' }}><strong>Landmark:</strong> {pg.landmark || 'N/A'}</p>
-                        <p style={{ margin: 0, fontSize: '1.1rem', color: 'var(--secondary-text)' }}><strong>Security Deposit:</strong> ₹{pg.securityDeposit || 0}</p>
+                        <p style={{ margin: 0, fontSize: '1.1rem', color: 'var(--secondary-text)' }}><strong>Security Deposit:</strong> Rs. {pg.securityDeposit || 0}</p>
                         <p style={{ margin: 0, fontSize: '1.1rem', color: 'var(--secondary-text)' }}><strong>Gender:</strong> <span style={{ textTransform: 'capitalize' }}>{pg.genderType}</span></p>
                     </div>
                 </div>
@@ -79,7 +95,7 @@ export default async function PGDetailsPage({ params }: { params: Promise<{ id: 
                     {pg.rooms.map((room: any) => (
                         <div key={room._id} className="card" style={{ textAlign: 'center' }}>
                             <h3 style={{ textTransform: 'capitalize', fontSize: '1rem', marginBottom: '0.5rem' }}>{room.roomType.replace('_', ' ')}</h3>
-                            <p style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--accent)' }}>₹{room.price}<span style={{ fontSize: '0.9rem', fontWeight: 400, color: 'var(--secondary-text)' }}>/mo</span></p>
+                            <p style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--accent)' }}>Rs. {room.price}<span style={{ fontSize: '0.9rem', fontWeight: 400, color: 'var(--secondary-text)' }}>/mo</span></p>
                         </div>
                     ))}
                 </div>

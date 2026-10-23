@@ -29,7 +29,7 @@ export default async function AdminReviewPage({ params }: { params: Promise<{ id
     return (
         <div className="container" style={{ paddingBottom: '4rem', paddingTop: '2rem' }}>
             <div className="mb-4">
-                <Link href="/admin/dashboard" className="btn-secondary" style={{ border: 'none', paddingLeft: 0, color: 'var(--primary-text)', fontWeight: 600, display: 'inline-block', marginBottom: '1rem' }}>← Back to Dashboard</Link>
+                <Link href="/admin/dashboard" className="btn-secondary" style={{ border: 'none', paddingLeft: 0, color: 'var(--primary-text)', fontWeight: 600, display: 'inline-block', marginBottom: '1rem' }}><span aria-hidden="true">‹</span> Back to Dashboard</Link>
                 <div className="flex justify-between items-center py-2 border-b">
                     <h1 style={{ fontSize: '1.25rem', margin: 0 }}>Review PG</h1>
                     <AdminActions pgId={pg._id} currentStatus={pg.status} />
@@ -64,7 +64,7 @@ export default async function AdminReviewPage({ params }: { params: Promise<{ id
                         <p style={{ margin: 0, fontSize: '1rem', color: 'var(--secondary-text)' }}><strong>City:</strong> {pg.city}</p>
                         <p style={{ margin: 0, fontSize: '1rem', color: 'var(--secondary-text)' }}><strong>Location:</strong> {pg.area}</p>
                         <p style={{ margin: 0, fontSize: '1rem', color: 'var(--secondary-text)' }}><strong>Landmark:</strong> {pg.landmark || 'N/A'}</p>
-                        <p style={{ margin: 0, fontSize: '1rem', color: 'var(--secondary-text)' }}><strong>Security Deposit:</strong> ₹{pg.securityDeposit || 0}</p>
+                        <p style={{ margin: 0, fontSize: '1rem', color: 'var(--secondary-text)' }}><strong>Security Deposit:</strong> Rs. {pg.securityDeposit || 0}</p>
                         <p style={{ margin: 0, fontSize: '1rem', color: 'var(--secondary-text)' }}><strong>Gender Allowed:</strong> <span style={{ textTransform: 'capitalize' }}>{pg.genderType}</span></p>
                     </div>
 
@@ -74,7 +74,7 @@ export default async function AdminReviewPage({ params }: { params: Promise<{ id
                             {pg.rooms.map((room: any) => (
                                 <div key={room._id} className="card p-3 flex justify-between items-center" style={{ width: '100%' }}>
                                     <span style={{ textTransform: 'capitalize' }}>{room.roomType.replace(/_/g, ' ')}</span>
-                                    <strong style={{ fontSize: '1.1rem' }}>₹{room.price}</strong>
+                                    <strong style={{ fontSize: '1.1rem' }}>Rs. {room.price}</strong>
                                 </div>
                             ))}
                         </div>

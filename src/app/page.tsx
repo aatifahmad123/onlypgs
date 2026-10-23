@@ -54,16 +54,16 @@ export default function Home() {
 
   return (
     <div className="container" style={{ paddingTop: '2rem', paddingBottom: '4rem' }}>
-      <main className="flex flex-col items-center justify-center catch-copy" style={{ minHeight: '60vh', textAlign: 'center', backgroundImage: 'radial-gradient(rgba(119, 141, 169, 0.25) 1.5px, transparent 1.5px)', backgroundSize: '24px 24px' }}>
+      <main className="flex flex-col items-center justify-center catch-copy" style={{ width: '100%', minHeight: '60vh', textAlign: 'center' }}>
 
-        <h2 className="hero-title">
+        <h2 className="hero-title" style={{ width: '100%' }}>
           Find your next PG without<br />the noise.
         </h2>
         <p style={{ color: 'var(--secondary-text)', marginBottom: '2rem', maxWidth: '600px' }}>
           Direct contact with owners. Complete Details. Real listings only.
         </p>
 
-        <form onSubmit={handleSearch} className="search-form" style={{ width: '100%', maxWidth: '500px', display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '4rem' }}>
+        <form onSubmit={handleSearch} className="search-form" style={{ width: '100%', maxWidth: '700px', display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '4rem' }}>
           <Select
             options={CITY_OPTIONS}
             value={city}
@@ -81,7 +81,7 @@ export default function Home() {
           <button type="submit" className="btn" style={{ width: '100%' }}>Search PGs</button>
         </form>
 
-        <section style={{ width: '100%', maxWidth: '900px' }}>
+        <section style={{ width: '100%', maxWidth: '1200px' }}>
           <h3 style={{ marginBottom: '2rem', color: 'var(--primary-text)' }}>Popular Cities</h3>
           <div className="cities-grid">
             {POPULAR_CITIES.map((c) => (
@@ -105,7 +105,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section style={{ width: '100%', maxWidth: '1000px', marginTop: '4rem' }}>
+        <section style={{ width: '100%', maxWidth: '1200px', marginTop: '4rem' }}>
           <h3 style={{ marginBottom: '2rem', color: 'var(--primary-text)' }}>Why Choose OnlyPGs?</h3>
           <div className="features-grid">
             <div className="card feature-card">
@@ -159,6 +159,8 @@ export default function Home() {
               grid-template-columns: repeat(2, 1fr);
               gap: 1.5rem;
               width: 100%;
+              max-width: 1000px;
+              margin: 0 auto;
            }
            @media (min-width: 768px) {
               .cities-grid {

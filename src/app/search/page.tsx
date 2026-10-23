@@ -77,11 +77,37 @@ export default async function SearchPage({
 }) {
     const resolvedParams = await searchParams;
     const pgs = await getPGs(resolvedParams);
+    const searchQuery = new URLSearchParams();
+
+    Object.entries(resolvedParams).forEach(([key, value]) => {
+        if (Array.isArray(value)) {
+            value.forEach((item) => searchQuery.append(key, item));
+        } else if (value !== undefined) {
+            searchQuery.set(key, value);
+        }
+    });
 
     return (
         <div className="container" style={{ paddingBottom: '2rem' }}>
             <div className="flex justify-between items-center mb-4 mt-6">
-                <h1 style={{ fontSize: '1.5rem' }}>PGs in {resolvedParams.city || 'India'} <span style={{ color: 'var(--secondary-text)', fontSize: '1rem', fontWeight: 400 }}>({pgs.length} results)</span></h1>
+                <h1 style={{ fontSize: '1.5rem' }}>
+                    PGs in {resolvedParams.city || 'India'}{' '}
+                    <span style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        verticalAlign: 'middle',
+                        color: 'var(--primary-text)',
+                        backgroundColor: 'transparent',
+                        border: '1px solid var(--accent)',
+                        borderRadius: '50px',
+                        padding: '0.2rem 0.65rem',
+                        fontSize: '0.8rem',
+                        fontWeight: 600,
+                        lineHeight: 1.2
+                    }}>
+                        {pgs.length} {pgs.length === 1 ? 'result' : 'results'}
+                    </span>
+                </h1>
             </div>
 
             <div style={{ marginBottom: '2rem' }}>
@@ -120,7 +146,7 @@ export default async function SearchPage({
                             No PGs found matching your criteria. Try adjusting filters.
                         </div>
                     ) : pgs.map((pg: any) => (
-                        <Link href={`/pg/${pg._id}`} key={pg._id} className="card result-card result-card-layout" style={{ textDecoration: 'none', color: 'inherit', transition: 'box-shadow 0.2s' }}>
+                        <Link href={`/pg/${pg._id}?${searchQuery.toString()}`} key={pg._id} className="card result-card result-card-layout" style={{ textDecoration: 'none', color: 'inherit', transition: 'box-shadow 0.2s' }}>
                             <div className="result-image">
                                 {pg.photos && pg.photos[0] ? (
                                     <img src={pg.photos[0]} alt={pg.pgName} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -176,15 +202,15 @@ export default async function SearchPage({
                                     <div>
                                         {pg.minPrice !== null ? (
                                             <p style={{ margin: 0, fontWeight: 700, fontSize: '1.1rem' }}>
-                                                ₹{pg.minPrice}
-                                                {pg.maxPrice !== null && pg.maxPrice > pg.minPrice && ` - ₹${pg.maxPrice}`}
+                                                Rs. {pg.minPrice}
+                                                {pg.maxPrice !== null && pg.maxPrice > pg.minPrice && ` - Rs. ${pg.maxPrice}`}
                                                 <span style={{ fontSize: '0.9rem', fontWeight: 400, color: 'var(--secondary-text)' }}>/mo</span>
                                             </p>
                                         ) : (
                                             <p style={{ margin: 0, color: 'var(--secondary-text)' }}>Price Varies</p>
                                         )}
                                     </div>
-                                    <span className="btn-secondary view-details-btn" style={{ padding: '0.4rem 1rem', fontSize: '0.9rem', borderRadius: '20px' }}>View Details</span>
+                                    <span className="btn view-details-btn" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem', borderRadius: '6px' }}>View Details</span>
                                 </div>
                             </div>
                         </Link>

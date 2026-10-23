@@ -18,7 +18,7 @@ export default function Filters({ initialFilters }: FiltersProps) {
                 style={{ cursor: 'pointer' }} // Inline for explicit behavior confirmation
             >
                 <h3 style={{ margin: 0 }}>Filters</h3>
-                <span className="md:hidden filter-toggle-icon" style={{ display: 'flex', alignItems: 'center' }}>
+                <span className="md:hidden filter-toggle-icon" style={{ alignItems: 'center' }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }}>
                         <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
@@ -31,7 +31,7 @@ export default function Filters({ initialFilters }: FiltersProps) {
 
                     <label className="label">
                         Gender
-                        <select name="gender" className="input" defaultValue={initialFilters.gender as string || 'boys'}>
+                        <select name="gender" className="input filter-select" defaultValue={initialFilters.gender as string || 'boys'}>
                             <option value="boys">Boys</option>
                             <option value="girls">Girls</option>
                             <option value="unisex">Unisex</option>
@@ -40,7 +40,7 @@ export default function Filters({ initialFilters }: FiltersProps) {
 
                     <label className="label">
                         Room Type
-                        <select name="roomType" className="input" defaultValue={initialFilters.roomType as string}>
+                        <select name="roomType" className="input filter-select" defaultValue={initialFilters.roomType as string}>
                             <option value="">Any</option>
                             <option value="single">Single</option>
                             <option value="double_sharing">Double Sharing</option>
