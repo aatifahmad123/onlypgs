@@ -9,7 +9,7 @@ export default function Footer() {
                 <div className="flex gap-4 footer-links">
                     <Link href="/about" style={{ fontSize: '0.8rem', color: 'var(--secondary-text)' }}>About Us</Link>
                     <Link href="/privacy-policy" style={{ fontSize: '0.8rem', color: 'var(--secondary-text)' }}>Privacy Policy</Link>
-                    <Link href="/terms-and-conditions" style={{ fontSize: '0.8rem', color: 'var(--secondary-text)' }}>Terms &amp; Conditions</Link>
+                    <Link href="/terms-and-conditions" style={{ fontSize: '0.8rem', color: 'var(--secondary-text)' }}>Terms and Conditions</Link>
                     <Link href="/admin/login" style={{ fontSize: '0.8rem', color: 'var(--secondary-text)' }}>Admin Login</Link>
                 </div>
             </div>
